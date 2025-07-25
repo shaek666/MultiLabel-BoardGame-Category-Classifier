@@ -1,0 +1,4 @@
+gradio
+onnxruntime
+torch
+transformers
