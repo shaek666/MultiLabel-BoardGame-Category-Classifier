@@ -28,10 +28,10 @@ The trained model has a memory of 316+MB. I compressed this model using ONNX qua
 The compressed model is deployed to HuggingFace Spaces Gradio App. The implementation can be found in `deployment` folder or [here](https://huggingface.co/spaces/nosttradamus/multilabel-boardgame-genre-classifier) 
 The keys of `deployment\category_types_encoded.json` shows the board game categories.
 
-<img src = "deployment/gradio_app.PNG" width="800" height="400">
+<img src = "deployment/gradio_app.png" width="800" height="400">
 
 ## Web Deployment
 Deployed a Flask App built to take descprition and show the categories as output. Check `flask ` branch. The website is live [here](https://multilabel-boardgame-genre-classifier.onrender.com) 
 
-<img src = "deployment/flask_app_home.PNG" width="800" height="400">
-<img src = "deployment/flask_app_results.PNG" width="800" height="200">
+<img src = "deployment/flask_app_home.png" width="800" height="400">
+<img src = "deployment/flask_app_results.png" width="800" height="200">
