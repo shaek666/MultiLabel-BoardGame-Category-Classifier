@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from gradio_client import Client
 
 app = Flask(__name__)
-client = Client("nosttradamus/multilabel-boardgame-genre-classifier")
+client = Client("https://nosttradamus-multilabel-boardgame-genre-classifier.hf.space/")
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -10,9 +10,8 @@ def index():
         try:
             input_text = request.form['text']
             output = predict_genres(input_text)
-            print(f"Model output: {output}")  # Debug print
 
-            if output and isinstance(output, dict) and "confidences" in output:
+            if output and isinstance(output, dict) and "confidences" in output and output['confidences'] is not None:
                 try:
                     # Get genres with confidence >= 0.2
                     labels = [item['label'] for item in output['confidences'] if float(item.get('confidence', 0)) >= 0.2]
@@ -30,18 +29,14 @@ def index():
 
 def predict_genres(input_text):
     try:
-        print(f"Sending request with text: {input_text[:100]}...")
-        result = client.predict(
-            input_text,
-            api_name="/predict"
-        )
-        print(f"Raw response type: {type(result)}")
-        print(f"Raw response content: {result}")
-        return result
+        result = client.predict(input_text, api_name="/predict")
+        # Check if the expected data is in the result.
+        if isinstance(result, dict) and 'confidences' in result:
+            return result
+        else:
+            # Log or handle unexpected API response structure
+            return None
     except Exception as e:
-        print(f"Error in prediction: {str(e)}")
-        import traceback
-        print(f"Full traceback: {traceback.format_exc()}")
         return None
 
 if __name__ == "__main__":
