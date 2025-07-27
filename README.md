@@ -31,7 +31,7 @@ The keys of `deployment\category_types_encoded.json` shows the board game catego
 <img src = "deployment/gradio_app.png" width="800" height="400">
 
 ## Web Deployment
-Deployed a Flask App built to take descprition and show the categories as output. Check `flask ` branch. The website is live [here](https://multilabel-boardgame-genre-classifier.onrender.com) 
+Deployed a Flask App built to take descprition and show the categories as output. Check `flask ` branch. The website is live [here](https://multilabel-boardgame-category-classifier.onrender.com/) 
 
 <img src = "deployment/flask_app_home.png" width="1000" height="600">
 <img src = "deployment/flask_app_results.png" width="1000" height="600">
