@@ -1,37 +1,51 @@
-# MultiLabel-BoardGame-Category-Classifier
+# 🎲 Board Game Genre Classifier 🎲
 
-A text classification model from data collection, model training, and deployment. <br/>
-The model can classify board games into categories. <br/>
+This web application leverages a machine learning model to predict the genres of a board game based on its description. Describe your game concept, and the AI will provide a list of predicted genres, helping you understand its potential market placement and core mechanics.
 
- ## Data Collection
+## ✨ Features
 
-Data was collected from BoardGameGeek. <br/>The data collection process is divided into 2 steps:
+- **AI-Powered Genre Prediction**: Utilizes a fine-tuned model to classify board game descriptions into multiple genres.
+- **Interactive UI**: A clean and engaging user interface for submitting game descriptions.
+- **Responsive Design**: The application is designed to work on both desktop and mobile devices.
+- **Dynamic Backgrounds**: Features animated cards, tokens, and dice to create an immersive experience.
 
-1. **Board Game URL Scraping:** The board game urls were scraped with `scraper\boardgame_url_scraper.py` and the urls are stored along with board game title in `scraper\boardgame_urls.csv`
-2. **Board Game Details Scraping:** Using the urls, board game description and categories are scraped with `scraper\boardgame_details_scraper.py` and they are stored in `data\boardgame_details.csv`
+## 🛠️ Technologies Used
 
-In total, I scraped 29,565 board game details.
+- **Backend**: Python, Flask
+- **Frontend**: HTML, CSS, JavaScript
+- **Machine Learning**: Hugging Face Transformers
 
-## Data Preprocessing
+## 🚀 Getting Started
 
-Initially there were *93* different categories in the dataset. After some analysis, I found out *3* of them are rare. So, I removed those categories and then I have *90* categories. After that, I removed the description without any categories resulting in *28,827* samples.
+### Prerequisites
 
-## Model Training
+- Python 3.7+
+- `pip` for package management
 
-Finetuned a `distilrobera-base` model from HuggingFace Transformers using Fastai and Blurr. The model training notebook can be viewed [here](https://colab.research.google.com/drive/1TZ8u98hLOPXXFPtGR-VTphth8zCa0F-E?usp=sharing)
+### Installation
 
-## Model Compression and ONNX Inference
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd MultiLabel-BoardGame-Category-Classifier
+    ```
 
-The trained model has a memory of 316+MB. I compressed this model using ONNX quantization and brought it under 81MB. 
- 
-## Model Deployment
-The compressed model is deployed to HuggingFace Spaces Gradio App. The implementation can be found in `deployment` folder or [here](https://huggingface.co/spaces/nosttradamus/multilabel-boardgame-genre-classifier) 
-The keys of `deployment\category_types_encoded.json` shows the board game categories.
+2.  **Create a virtual environment:**
+    ```bash
+    python -m venv env
+    source env/bin/activate  # On Windows, use `env\Scripts\activate`
+    ```
 
-<img src = "deployment/gradio_app.png" width="800" height="400">
+3.  **Install the dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-## Web Deployment
-Deployed a Flask App built to take descprition and show the categories as output. Check `flask ` branch. The website is live [here](https://multilabel-boardgame-category-classifier.onrender.com/) 
+### Running the Application
 
-<img src = "deployment/flask_app_home.png" width="1000" height="600">
-<img src = "deployment/flask_app_results.png" width="1000" height="600">
+1.  **Start the Flask server:**
+    ```bash
+    python app.py
+    ```
+
+2.  Open your browser and navigate to `http://127.0.0.1:5000` to use the application.
